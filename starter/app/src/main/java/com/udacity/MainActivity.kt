@@ -9,11 +9,11 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,8 +30,28 @@ class MainActivity : AppCompatActivity() {
 
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
-        custom_button.setOnClickListener {
-            download()
+        loading_button.setOnClickListener {
+            when (radio.checkedRadioButtonId) {
+                R.id.radio_glide -> {
+                    download(GLIDE)
+                    loading_button.setState(ButtonState.Loading)
+                }
+                R.id.radio_load_app -> {
+                    download(UDACITY)
+                    loading_button.setState(ButtonState.Loading)
+                }
+                R.id.radio_retrofit -> {
+                    download(RETROFIT)
+                    loading_button.setState(ButtonState.Loading)
+                }
+                else -> {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.time_to_choose),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
     }
 
@@ -41,9 +61,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun download() {
+    private fun download(uri: String) {
         val request =
-            DownloadManager.Request(Uri.parse(URL))
+            DownloadManager.Request(Uri.parse(uri))
                 .setTitle(getString(R.string.app_name))
                 .setDescription(getString(R.string.app_description))
                 .setRequiresCharging(false)
@@ -56,8 +76,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val URL =
+        const val UDACITY =
             "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
+        const val GLIDE =
+            "https://github.com/bumptech/glide/archive/master.zip"
+        const val RETROFIT =
+            "https://github.com/square/retrofit/archive/master.zip"
         private const val CHANNEL_ID = "channelId"
     }
 
