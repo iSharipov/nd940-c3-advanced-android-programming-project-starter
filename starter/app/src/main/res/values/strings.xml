@@ -17,4 +17,19 @@
     <string name="radio_retrofit_text">Retrofit - Type-safe HTTP client for Android and Java by Square, Inc</string>
 
     <string name="time_to_choose">It\'s time to choose</string>
+    <string name="success">success</string>
+    <string name="fail">fail</string>
+    <string name="file_name">File name</string>
+    <string name="status">Status</string>
+    <string name="back">Back</string>
+    <string name="downloading">Downloading</string>
+    <string name="dive_into">Dive into</string>
+    <string name="channel_id">CHANNEL_ID</string>
+    <string name="download_id">DOWNLOAD_ID</string>
+    <string name="download_status">DOWNLOAD_STATUS</string>
+    <string name="file_name_extra">FILE_NAME</string>
+    <string name="channel_name">CHANNEL_NAME</string>
+    <string name="channel_description">CHANNEL_DESCRIPTION</string>
+    <string name="completed">Completed</string>
+    <string name="failed">Failed</string>
 </resources>
